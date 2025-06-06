@@ -1,6 +1,12 @@
 from InquirerPy import inquirer
 
 def menu_interativo():
+    """
+    A função menu_interativo é responsável por executar um pequeno sistema de gerenciamento de usuários
+    e o quanto vale cada pegada de carbono de cada um no terminal, utilizando a biblioteca InquirerPy 
+    para criar um menu interativo. Essa função encapsula todas as operações do programa e oferece uma
+    interface clara e amigável ao usuário.
+    """
     usuarios = []
 
     def adicionar_usuario():
