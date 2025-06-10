@@ -11,7 +11,7 @@ def menu_interativo():
 
     def adicionar_usuario():
         nome = inquirer.text(message='Digite o nome do usuário:').execute()
-        usuarios.append(nome)
+        usuarios.append({'nome': nome,})
         print(f'Usuário {nome} adicionado com sucesso!\n')
 
     def ver_usuarios():
@@ -20,7 +20,8 @@ def menu_interativo():
         else:
             print('Usuários cadastrados:')
             for i, usuario in enumerate(usuarios, 1):
-                print(f'{i}. {usuario}\n')
+                print(f'{i}. {usuario['nome']}')
+            print()
 
     def calculadora_media():
         entrada = input('Digite suas notas separadas por espaço: ')
@@ -34,6 +35,40 @@ def menu_interativo():
         except ValueError:
             print('Entrada inválida. Use apenas números separados por espaço.\n')
 
+    def editar_usuario():
+        if not usuarios:
+            print('Nenhum usuário cadastrado. \n')
+            return
+        
+        nome_antigo = inquirer.select(
+            message='Escolha o usuário para editar:',
+            choices=[usuario['nome'] for usuario in usuarios],
+        ).execute()
+
+        novo_nome = inquirer.text(message=f'Digite o novo nome para "{nome_antigo}":').execute()
+
+        for usuario in usuarios:
+            if usuario['nome'] == nome_antigo:
+                usuario['nome'] = novo_nome
+                print(f'Nome alterado para "{novo_nome}" com sucesso!\n')
+                break
+
+    def remover_usuario():
+        if not usuarios:
+            print('Nenhum usuário cadastrado. \n')
+            return
+        
+        nome_escolhido = inquirer.select(
+            message='Escolha o usuário para remover:',
+            choices=[usuario['nome'] for usuario in usuarios],
+        ).execute()
+
+        for i, usuario in enumerate(usuarios):
+            if usuario['nome'] == nome_escolhido:
+                usuarios.pop(i)
+                print(f'Usuário "{nome_escolhido}" removido com sucesso.\n')
+                break
+
     while True:
         opcao = inquirer.select(
             message='Selecione uma opção:',
@@ -41,6 +76,8 @@ def menu_interativo():
                 'Adicionar usuário',
                 'Ver usuários cadastrados',
                 'Calcule sua média',
+                'Editar nome de um usuário',
+                'Remover usuário',
                 'Sair',
             ],
         ).execute()
@@ -51,6 +88,10 @@ def menu_interativo():
             ver_usuarios()
         elif opcao == 'Calcule sua média':
             calculadora_media()
+        elif opcao == 'Editar nome de um usuário':
+            editar_usuario()
+        elif opcao == 'Remover usuário':
+            remover_usuario()
         elif opcao == 'Sair':
             print('Saindo do programa...')
             break
