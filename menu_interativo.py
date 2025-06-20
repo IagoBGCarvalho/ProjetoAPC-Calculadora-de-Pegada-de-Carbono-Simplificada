@@ -1,99 +1,118 @@
 from InquirerPy import inquirer
+import database
+import calculadora
 
 def menu_interativo():
     """
-    A função menu_interativo é responsável por executar um pequeno sistema de gerenciamento de usuários
-    e o quanto vale cada pegada de carbono de cada um no terminal, utilizando a biblioteca InquirerPy 
-    para criar um menu interativo. Essa função encapsula todas as operações do programa e oferece uma
-    interface clara e amigável ao usuário.
+    Executa o sistema de gerenciamento de usuários e calculadora de pegada de carbono.
+    Esta função coordena as chamadas para os módulos de database e calculadora.
     """
-    usuarios = []
 
     def adicionar_usuario():
-        nome = inquirer.text(message='Digite o nome do usuário:').execute()
-        usuarios.append({'nome': nome,})
-        print(f'Usuário {nome} adicionado com sucesso!\n')
+        nome = inquirer.text(message='Digite o nome do novo usuário:').execute()
+        if database.criar_novo_usuario(nome):
+            print(f'\n✅ Usuário "{nome}" adicionado com sucesso!\n')
+        else:
+            print(f'\n❌ Erro: Usuário "{nome}" já existe.\n')
 
     def ver_usuarios():
+        usuarios = database.carregar_dados()
         if not usuarios:
-            print('Nenhum usuário cadastrado.\n')
+            print('\nNenhum usuário cadastrado.\n')
         else:
-            print('Usuários cadastrados:')
-            for i, usuario in enumerate(usuarios, 1):
-                print(f'{i}. {usuario['nome']}')
-            print()
+            print('\n--- Usuários Cadastrados ---')
+            for nome, pegada in usuarios.items():
+                print(f'- {nome}: {pegada:.2f} kg de CO₂')
+            print('--------------------------\n')
 
-    def calculadora_media():
-        entrada = input('Digite suas notas separadas por espaço: ')
-        try:
-            notas = list(map(float, entrada.split()))
-            if notas:
-                media = sum(notas) / len(notas)
-                print(f'A sua média de nota é: {media:.2f}\n')
-            else:
-                print('Nenhuma nota válida fornecida\n')
-        except ValueError:
-            print('Entrada inválida. Use apenas números separados por espaço.\n')
+    def iniciar_calculadora_para_usuario():
+        nomes_usuarios = database.obter_nomes_usuarios()
+        if not nomes_usuarios:
+            print('\n❌ Nenhum usuário cadastrado. Crie um usuário antes de calcular.\n')
+            return
+
+        usuario_selecionado = inquirer.select(
+            message='Para qual usuário deseja calcular a pegada?',
+            choices=nomes_usuarios,
+        ).execute()
+
+        # Chama a função do arquivo da calculadora
+        nova_pegada = calculadora.iniciar_calculo_pegada()
+        
+        # Atualiza o valor no banco de dados
+        database.atualizar_pegada(usuario_selecionado, nova_pegada)
+        print(f'✅ Pegada de carbono do usuário "{usuario_selecionado}" atualizada com sucesso!\n')
+
 
     def editar_usuario():
-        if not usuarios:
-            print('Nenhum usuário cadastrado. \n')
+        nomes_usuarios = database.obter_nomes_usuarios()
+        if not nomes_usuarios:
+            print('\n❌ Nenhum usuário cadastrado.\n')
             return
         
         nome_antigo = inquirer.select(
             message='Escolha o usuário para editar:',
-            choices=[usuario['nome'] for usuario in usuarios],
+            choices=nomes_usuarios,
         ).execute()
 
         novo_nome = inquirer.text(message=f'Digite o novo nome para "{nome_antigo}":').execute()
+        
+        resultado = database.editar_nome_usuario(nome_antigo, novo_nome)
 
-        for usuario in usuarios:
-            if usuario['nome'] == nome_antigo:
-                usuario['nome'] = novo_nome
-                print(f'Nome alterado para "{novo_nome}" com sucesso!\n')
-                break
+        if resultado == "sucesso":
+            print(f'\n✅ Nome alterado de "{nome_antigo}" para "{novo_nome}" com sucesso!\n')
+        elif resultado == "ja_existe":
+            print(f'\n❌ Erro: O nome "{novo_nome}" já está em uso.\n')
+        else: # "nao_encontrado"
+             print(f'\n❌ Erro: Usuário "{nome_antigo}" não encontrado.\n')
+
 
     def remover_usuario():
-        if not usuarios:
-            print('Nenhum usuário cadastrado. \n')
+        nomes_usuarios = database.obter_nomes_usuarios()
+        if not nomes_usuarios:
+            print('\n❌ Nenhum usuário cadastrado.\n')
             return
         
         nome_escolhido = inquirer.select(
             message='Escolha o usuário para remover:',
-            choices=[usuario['nome'] for usuario in usuarios],
+            choices=nomes_usuarios,
         ).execute()
 
-        for i, usuario in enumerate(usuarios):
-            if usuario['nome'] == nome_escolhido:
-                usuarios.pop(i)
-                print(f'Usuário "{nome_escolhido}" removido com sucesso.\n')
-                break
+        if database.remover_usuario(nome_escolhido):
+            print(f'\n✅ Usuário "{nome_escolhido}" removido com sucesso.\n')
+        else:
+            print(f'\n❌ Erro: Usuário "{nome_escolhido}" não encontrado.\n')
+
 
     while True:
+        # Opções que serão mostradas para o usuário ao iniciar o programa
         opcao = inquirer.select(
             message='Selecione uma opção:',
             choices=[
-                'Adicionar usuário',
-                'Ver usuários cadastrados',
-                'Calcule sua média',
+                'Ver usuários',
+                'Adicionar novo usuário',
                 'Editar nome de um usuário',
                 'Remover usuário',
+                'Calcular Pegada de Carbono',
                 'Sair',
             ],
         ).execute()
 
-        if opcao == 'Adicionar usuário':
-            adicionar_usuario()
-        elif opcao == 'Ver usuários cadastrados':
+        # Condicionais que acionarão cada função de acordo com a escolha do usuário
+        if opcao == 'Ver usuários':
             ver_usuarios()
-        elif opcao == 'Calcule sua média':
-            calculadora_media()
+        elif opcao == 'Adicionar novo usuário':
+            adicionar_usuario()
         elif opcao == 'Editar nome de um usuário':
             editar_usuario()
         elif opcao == 'Remover usuário':
             remover_usuario()
+        elif opcao == 'Calcular Pegada de Carbono':
+            iniciar_calculadora_para_usuario()
         elif opcao == 'Sair':
             print('Saindo do programa...')
             break
 
-menu_interativo()
+# Esta linha permite que o programa execute diretamente pelo arquivo menu_interativo.py
+if __name__ == "__main__":
+    menu_interativo()
