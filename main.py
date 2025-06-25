@@ -1,5 +1,6 @@
-# Arquivo que deve ser executado
+# Arquivo que deve ser executado!!!
 from menu_interativo import menu_interativo
+from ui_components import exibir_banner
 
 if __name__ == "__main__":
     """
@@ -9,5 +10,5 @@ if __name__ == "__main__":
     para garantir que o programa funcione
     apenas quando o arquivo main for executado.
     """
-    menu_interativo()
-    
+    exibir_banner() # Exibe o banner
+    menu_interativo() # Inicia o menu interativo
