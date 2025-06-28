@@ -21,4 +21,4 @@ elif sistema == 'Darwin': #macOs
 else:
     print(f'Sistema operacional não suportado')
     print('Tentando executar diretamente neste terminal...')
-    os.system(f'python3 {script_a_ser_executado}')
+    os.system(f'python3 {script}')
