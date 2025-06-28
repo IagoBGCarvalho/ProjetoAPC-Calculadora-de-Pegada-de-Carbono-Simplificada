@@ -83,17 +83,22 @@ def menu_interativo():
         else:
             print(f'\n❌ Erro: Usuário "{nome_escolhido}" não encontrado.\n')
 
+    def saiba_mais():
+        """
+        """
+
 
     while True:
         # Opções que serão mostradas para o usuário ao iniciar o programa
         opcao = inquirer.select(
             message='Selecione uma opção:',
             choices=[
-                'Ver usuários',
                 'Adicionar novo usuário',
+                'Calcular Pegada de Carbono',
+                'Ver usuários',
                 'Editar nome de um usuário',
                 'Remover usuário',
-                'Calcular Pegada de Carbono',
+                'Saiba mais',
                 'Sair',
             ],
         ).execute()
@@ -109,6 +114,8 @@ def menu_interativo():
             remover_usuario()
         elif opcao == 'Calcular Pegada de Carbono':
             iniciar_calculadora_para_usuario()
+        elif opcao == 'Saiba mais':
+            saiba_mais()
         elif opcao == 'Sair':
             print('Saindo do programa...')
             break
