@@ -35,6 +35,8 @@ O objetivo é aplicar os fundamentos de algoritmos e programação na abordagem 
 3.  Instale as dependências necessárias:
     ```bash
     cd documentacao
+    ```
+    ```bash
     pip install -r requirements.txt
     ```
 
@@ -50,7 +52,7 @@ python launcher.py
 
 O projeto é organizado de forma modular para promover a separação de responsabilidades:
 
-  * `iniciar.py`: **Ponto de entrada principal.** Script "launcher" que abre o programa em um terminal dedicado.
+  * `launcher.py`: **Ponto de entrada principal.** Script "launcher" que abre o programa em um terminal dedicado.
   * `main.py`: Script que é chamado pelo launcher para iniciar a lógica da aplicação.
   * `menu_interativo.py`: Controla todo o fluxo de interação com o usuário, exibindo menus e coordenando as ações.
   * `calculadora.py`: Contém toda a lógica de negócio para o cálculo da pegada de carbono, incluindo os fatores de emissão e as perguntas ao usuário.
