@@ -8,6 +8,7 @@ O objetivo é aplicar os fundamentos de algoritmos e programação na abordagem 
 
 ## ✨ Funcionalidades
 
+  * **Launcher Multiplataforma:** Um script de inicialização detecta o sistema operacional (Windows, macOS, Linux) e abre o programa em uma nova janela de terminal dedicada.
   * **Gerenciamento de Usuários:** Crie, visualize, edite e remova perfis de usuário.
   * **Cálculo de Pegada de Carbono:** Calcule a pegada de carbono mensal com base em inputs do usuário.
   * **Persistência de Dados:** Os usuários e suas pegadas de carbono são salvos localmente em um arquivo `JSON`, mantendo os dados entre as sessões.
@@ -33,22 +34,24 @@ O objetivo é aplicar os fundamentos de algoritmos e programação na abordagem 
     ```
 3.  Instale as dependências necessárias:
     ```bash
+    cd documentacao
     pip install -r requirements.txt
     ```
 
 ### Execução
 
-Para iniciar o programa, execute o arquivo `main.py`:
+Para iniciar o programa, execute o script `launcher.py`. Ele irá detectar seu sistema operacional e abrir a aplicação em uma nova janela de terminal:
 
 ```bash
-python main.py
+python launcher.py
 ```
 
 ## 📂 Estrutura de Arquivos
 
 O projeto é organizado de forma modular para promover a separação de responsabilidades:
 
-  * `main.py`: Ponto de entrada principal do programa. Responsável por iniciar a aplicação.
+  * `iniciar.py`: **Ponto de entrada principal.** Script "launcher" que abre o programa em um terminal dedicado.
+  * `main.py`: Script que é chamado pelo launcher para iniciar a lógica da aplicação.
   * `menu_interativo.py`: Controla todo o fluxo de interação com o usuário, exibindo menus e coordenando as ações.
   * `calculadora.py`: Contém toda a lógica de negócio para o cálculo da pegada de carbono, incluindo os fatores de emissão e as perguntas ao usuário.
   * `database.py`: Gerencia a persistência de dados, cuidando da leitura e escrita no arquivo `usuarios_pegada.json`.
@@ -111,6 +114,6 @@ Calcula as emissões com base na quantidade de alimentos consumidos, considerand
 Este projeto foi desenvolvido por:
 
   * Iago Batista Gomes de Carvalho
+  * Pedro Vitor Teixeira
   * Maurício Nogueira da Silva
   * Paulo Morais de Souza Guerra
-  * Pedro Vitor Teixeira
