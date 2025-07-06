@@ -1,0 +1,20 @@
+# Ignorar cache do Python
+__pycache__/
+*.pyc
+
+# Ignorar pastas de build do PyInstaller
+build/
+dist/
+*.spec
+
+# Ignorar arquivos temporários de sistemas operacionais
+.DS_Store
+Thumbs.db
+
+# Ignorar ambientes virtuais
+venv/
+.env/
+
+# Outros arquivos temporários
+*.log
+*.bak

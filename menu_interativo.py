@@ -1,4 +1,5 @@
 from InquirerPy import inquirer
+import webbrowser
 import database
 import calculadora
 
@@ -85,7 +86,11 @@ def menu_interativo():
 
     def saiba_mais():
         """
+        Função que funciona como um hyperlink que leva o usuário até a documentação do projeto.
         """
+        url = "https://github.com/IagoBGCarvalho/ProjetoAPC-Calculadora-de-Pegada-de-Carbono-Simplificada/tree/main/documentacao"
+        print('Abrindo a documentação do projeto no navegador...')
+        webbrowser.open(url)
 
 
     while True:

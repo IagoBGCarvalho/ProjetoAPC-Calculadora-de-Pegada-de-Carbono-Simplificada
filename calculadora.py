@@ -1,4 +1,5 @@
 from InquirerPy import inquirer
+import matplotlib.pyplot as plt
 
 # --- CONSTANTES DE EMISSÃO (Valores médios em kg de CO₂ equivalente) ---
 # Fontes: Fatores compilados a partir do Ministério da Ciência, Tecnologia e Inovação (MCTI) do Brasil (2023)
@@ -104,6 +105,20 @@ def _calcular_alimentacao():
     print(f"Subtotal de Alimentação: {subtotal:.2f} kg de CO₂e")
     return subtotal
 
+def mostrar_grafico_matplotlib(categorias, valores):
+    """Exibe um gráfico de pizza com a distribuição da pegada de carbono."""
+    plt.figure(figsize=(8, 6))
+    plt.pie(
+        valores,
+        labels=categorias,
+        autopct='%1.1f%%',
+        startangle=90,
+        wedgeprops={'edgecolor': 'white'}
+    )
+    plt.title('Distribuição da Pegada de Carbono (Mensal)')
+    plt.axis('equal')  # Deixa o gráfico redondo
+    plt.tight_layout()
+    plt.show()
 
 def iniciar_calculo_pegada():
     """
@@ -125,7 +140,7 @@ def iniciar_calculo_pegada():
     print("\n-------------------------------------------------------")
     print(f"Sua pegada de carbono MENSAL estimada é de: {pegada_mensal_total:.2f} kg de CO₂e")
     print("-------------------------------------------------------")
-    
+
     #Indica qual categoria contribuiu mais para a pegada de carbono 
     # e mostra a comparação da pegada de carbono do usuário com a de um cidadão brasileiro 
     media_brasileira = 1.91
@@ -159,6 +174,13 @@ def iniciar_calculo_pegada():
         print("- Reduza o consumo de carne bovina e fast-food.")
         print("- Prefira alimentos locais e da estação.")
         print("- Evite o desperdício de alimentos.")
+
+
+    # Dados para o gráfico
+    valores = [pegada_energia, pegada_locomocao, pegada_alimentacao]
+
+    # Exibe gráfico com matplotlib
+    mostrar_grafico_matplotlib(categorias, valores)
 
  # Retorna o valor mensal para ser salvo no banco de dados
     return pegada_mensal_total
