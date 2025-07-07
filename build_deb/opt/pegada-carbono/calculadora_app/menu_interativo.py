@@ -10,9 +10,6 @@ def menu_interativo():
     """
 
     def adicionar_usuario():
-        """
-        Função que permite adicionar um usuário ao banco de dados do programa.
-        """
         nome = inquirer.text(message='Digite o nome do novo usuário:').execute()
         if database.criar_novo_usuario(nome):
             print(f'\n✅ Usuário "{nome}" adicionado com sucesso!\n')
@@ -20,9 +17,6 @@ def menu_interativo():
             print(f'\n❌ Erro: Usuário "{nome}" já existe.\n')
 
     def ver_usuarios():
-        """
-        Função que permite ver os usuários cadastrados no programa.
-        """
         usuarios = database.carregar_dados()
         if not usuarios:
             print('\nNenhum usuário cadastrado.\n')
@@ -33,10 +27,6 @@ def menu_interativo():
             print('--------------------------\n')
 
     def iniciar_calculadora_para_usuario():
-        """
-        Função que permite a escolha de um usuário cadastrado para inicializar o cálculo
-        da pegada de carbono.
-        """
         nomes_usuarios = database.obter_nomes_usuarios()
         if not nomes_usuarios:
             print('\n❌ Nenhum usuário cadastrado. Crie um usuário antes de calcular.\n')
@@ -56,9 +46,6 @@ def menu_interativo():
 
 
     def editar_usuario():
-        """
-        Função que permite editar o nome de um usuário cadastrado.
-        """
         nomes_usuarios = database.obter_nomes_usuarios()
         if not nomes_usuarios:
             print('\n❌ Nenhum usuário cadastrado.\n')
@@ -82,9 +69,6 @@ def menu_interativo():
 
 
     def remover_usuario():
-        """
-        Função que permite remover um usuário cadastrado do banco de dados do programa.
-        """
         nomes_usuarios = database.obter_nomes_usuarios()
         if not nomes_usuarios:
             print('\n❌ Nenhum usuário cadastrado.\n')
@@ -104,7 +88,7 @@ def menu_interativo():
         """
         Função que funciona como um hyperlink que leva o usuário até a documentação do projeto.
         """
-        url = "https://github.com/IagoBGCarvalho/ProjetoAPC-Calculadora-de-Pegada-de-Carbono-Simplificada/blob/main/README.md"
+        url = "https://github.com/IagoBGCarvalho/ProjetoAPC-Calculadora-de-Pegada-de-Carbono-Simplificada/tree/main/documentacao"
         print('Abrindo a documentação do projeto no navegador...')
         webbrowser.open(url)
 
@@ -140,3 +124,7 @@ def menu_interativo():
         elif opcao == 'Sair':
             print('Saindo do programa...')
             break
+
+# Esta linha permite que o programa execute diretamente pelo arquivo menu_interativo.py
+if __name__ == "__main__":
+    menu_interativo()

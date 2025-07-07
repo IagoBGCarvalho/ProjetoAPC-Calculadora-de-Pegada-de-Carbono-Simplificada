@@ -143,12 +143,12 @@ def iniciar_calculo_pegada():
 
     #Indica qual categoria contribuiu mais para a pegada de carbono 
     # e mostra a comparação da pegada de carbono do usuário com a de um cidadão brasileiro 
-    media_brasileira = 775
+    media_brasileira = 1.91
     diferenca = pegada_mensal_total - media_brasileira
     if diferenca > 0:
-        print(f"Sua pegada de carbono está {diferenca:.2f} kg acima da média mensal de um cidadão brasileiro.\n")
+        print(f"Sua pegada de carbono está {diferenca:.2f} kg acima da média mensal de um cidadão brasileiro.")
     else:
-        print(f"Sua pegada de carbono está {abs(diferenca):.2f} kg abaixo da média mensal de um cidadão brasileiro.\n")
+        print(f"Sua pegada de carbono está {abs(diferenca):.2f} kg abaixo da média mensal de um cidadão brasileiro.")
     
     categorias = {
         "Energia": pegada_energia,
@@ -158,22 +158,22 @@ def iniciar_calculo_pegada():
 
     maior_categoria = max(categorias, key=categorias.get)
 
-    print(f"A categoria que mais contribuiu foi: {maior_categoria} com ({categorias[maior_categoria]:.2f} kg de CO₂e)\n")
+    print(f" A categoria que mais contribuiu foi: {maior_categoria} com ({categorias[maior_categoria]:.2f} kg de CO₂e)")
  # Dicas com base na categoria mais emissora
     print("Dicas para reduzir seu maior emissor de carbono:")
 
     if maior_categoria == "Energia":
         print("- Reduza o tempo de banho ou instale um chuveiro mais eficiente com menor gasto de energia.")
         print("- Desligue eletrônicos da tomada quando não estiver usando.")
-        print("- Prefira equipamentos com selo Procel A.\n")
+        print("- Prefira equipamentos com selo Procel A.")
     elif maior_categoria ==  "Locomoção":
         print("- Sempre que possível, utilize transporte público ou bicicleta.")
         print("- Compartilhe caronas.")
-        print("- Mantenha seu veículo regulado para reduzir o consumo.\n")
+        print("- Mantenha seu veículo regulado para reduzir o consumo.")
     elif maior_categoria == "Alimentação":
         print("- Reduza o consumo de carne bovina e fast-food.")
         print("- Prefira alimentos locais e da estação.")
-        print("- Evite o desperdício de alimentos.\n")
+        print("- Evite o desperdício de alimentos.")
 
 
     # Dados para o gráfico
