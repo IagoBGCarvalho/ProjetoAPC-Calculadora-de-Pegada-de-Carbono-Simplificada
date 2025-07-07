@@ -1,4 +1,0 @@
-#!/bin/bash
-# Script que chama o programa principal
-
-python3 /opt/pegada-carbono/main.py

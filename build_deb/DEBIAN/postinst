@@ -1,9 +1,0 @@
-#!/bin/bash
-# Script que executa após a instalação
-
-echo "Instalando dependências Python via pip..."
-pip3 install -r /opt/pegada-carbono/requirements.txt
-echo "Instalação de dependências concluída."
-
-# Define o código de saída como sucesso
-exit 0

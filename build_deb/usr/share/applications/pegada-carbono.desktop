@@ -1,9 +1,0 @@
-[Desktop Entry]
-Version=1.0
-Name=Calculadora de Pegada de Carbono
-Comment=Calcule sua pegada de carbono mensal
-Exec=pegada-carbono
-Icon=/usr/share/pixmaps/iconecpc.png
-Terminal=true
-Type=Application
-Categories=Utility;Education;
