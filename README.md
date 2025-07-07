@@ -16,7 +16,6 @@ Além do cálculo, o programa oferece **relatórios gráficos** gerados com `mat
   * **Gerenciamento de Usuários:** Crie, visualize, edite e remova múltiplos perfis.
   * **Persistência de Dados:** Os dados são salvos em um arquivo JSON local, mantendo o histórico dos usuários entre as sessões.
   * **Acesso à Documentação:** Uma opção "Saiba Mais" no menu principal redireciona o usuário para este repositório para total transparência sobre a metodologia.
-  * **Launcher Multiplataforma:** Para desenvolvedores, um script de inicialização detecta o sistema operacional e abre o programa em uma nova janela de terminal.
 
 ## 🚀 Como Usar o Programa
 
@@ -57,10 +56,22 @@ Esta opção é para quem deseja executar o código diretamente, modificar ou co
     ```bash
     pip install -r requirements.txt
     ```
-4.  Execute o script de inicialização:
+4.  Execute o script principal `main.py`:
     ```bash
-    python iniciar.py
+    python main.py
     ```
+
+## 📂 Estrutura de Arquivos
+
+O projeto é organizado de forma modular para promover a separação de responsabilidades:
+
+  * `main.py`: **Ponto de entrada principal do programa.** Localizado na raiz do projeto, é responsável por iniciar a aplicação.
+  * `calculadora_app/`: **Pasta que contém o código-fonte.** Agrupa todos os módulos que fazem a calculadora funcionar.
+      * `menu_interativo.py`: Controla todo o fluxo de interação com o usuário.
+      * `calculadora.py`: Contém a lógica de negócio para o cálculo da pegada de carbono.
+      * `database.py`: Gerencia a leitura e escrita dos dados dos usuários.
+      * `ui_components.py`: Armazena componentes visuais, como o banner ASCII e os gráficos.
+  * `usuarios_pegada.json`: Arquivo que funciona como banco de dados local.
 
 ## 🧠 Saiba Mais: A Metodologia de Cálculo
 
@@ -92,6 +103,6 @@ Onde "Atividade" é um dado fornecido pelo usuário (ex: km rodados) e "Fator de
 Este projeto foi desenvolvido por:
 
   * Iago Batista Gomes de Carvalho
+  * Pedro Vitor Teixeira
   * Maurício Nogueira da Silva
   * Paulo Morais de Souza Guerra
-  * Pedro Vitor Teixeira
