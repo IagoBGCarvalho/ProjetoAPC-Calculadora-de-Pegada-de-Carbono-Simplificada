@@ -143,7 +143,7 @@ def iniciar_calculo_pegada():
 
     #Indica qual categoria contribuiu mais para a pegada de carbono 
     # e mostra a comparação da pegada de carbono do usuário com a de um cidadão brasileiro 
-    media_brasileira = 1.91
+    media_brasileira = 775
     diferenca = pegada_mensal_total - media_brasileira
     if diferenca > 0:
         print(f"Sua pegada de carbono está {diferenca:.2f} kg acima da média mensal de um cidadão brasileiro.")
