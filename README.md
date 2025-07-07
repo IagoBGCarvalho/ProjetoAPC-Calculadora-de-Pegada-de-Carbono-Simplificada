@@ -25,7 +25,7 @@ Existem duas maneiras de usar a calculadora: através do instalador (recomendado
 
 Esta é a maneira mais fácil de usar o programa, sem precisar instalar Python.
 
-1.  Acesse a página de [**Releases**](https://www.google.com/search?q=https://github.com/IagoBGCarvalho/ProjetoAPC-Calculadora-de-Pegada-de-Carbono-Simplificada/releases) do repositório.
+1.  Acesse a página de [**Releases**](https://github.com/IagoBGCarvalho/ProjetoAPC-Calculadora-de-Pegada-de-Carbono-Simplificada/releases) do repositório.
 2.  Baixe o arquivo apropriado para o seu sistema operacional:
       * Para **Windows**: Baixe o arquivo `.exe`.
       * Para **Linux (Debian/Ubuntu)**: Baixe o arquivo `.deb`.
