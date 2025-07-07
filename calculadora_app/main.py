@@ -1,6 +1,6 @@
 # main.py
-from menu_interativo import menu_interativo
-from ui_components import exibir_banner
+from calculadora_app.menu_interativo import menu_interativo
+from calculadora_app.ui_components import exibir_banner
 
 def iniciar_programa():
     """

@@ -1,7 +1,7 @@
 from InquirerPy import inquirer
 import webbrowser
-import database
-import calculadora
+import calculadora_app.database as database
+import calculadora_app.calculadora as calculadora
 
 def menu_interativo():
     """
