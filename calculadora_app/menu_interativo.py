@@ -105,7 +105,7 @@ def menu_interativo():
         Função que funciona como um hyperlink que leva o usuário até a documentação do projeto.
         """
         url = "https://github.com/IagoBGCarvalho/ProjetoAPC-Calculadora-de-Pegada-de-Carbono-Simplificada/blob/main/README.md"
-        print('Abrindo a documentação do projeto no navegador...')
+        print('Abrindo a documentação do projeto no navegador...\n')
         webbrowser.open(url)
 
 
