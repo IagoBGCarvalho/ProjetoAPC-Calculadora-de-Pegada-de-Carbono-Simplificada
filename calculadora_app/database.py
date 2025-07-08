@@ -1,6 +1,6 @@
 # O arquivo "database.py" serve para comunicar o python com o banco de dados JSON.
-# Nele, estão contidas as funções que servem para ler, modificar(criar, alterar, excluir...) e salvar
-# o arquivo JSON e os dados contidos nele. O arquivo "menu_interativo.py" que estará encarregado
+# Nele, estão contidas as funções que servem para ler, modificar(criar, alterar, excluir...) e salvar o arquivo JSON e os dados contidos nele. 
+# O arquivo "menu_interativo.py" que estará encarregado
 # de importar essas funções e utilizá-las.
 
 import json # Módulo que permite interagir com o arquivo JSON.

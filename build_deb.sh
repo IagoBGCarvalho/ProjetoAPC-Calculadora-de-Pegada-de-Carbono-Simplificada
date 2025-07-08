@@ -2,7 +2,7 @@
 
 # --- Configurações ---
 APP_NAME="pegada-carbono"
-VERSION="1.0.1" # Nova versão para refletir a correção
+VERSION="1.0.1"
 MAINTAINER="Iago Carvalho <iagobgc@gmail.com>"
 ICON_NAME="iconecpc.png"
 BUILD_DIR="build_deb"
@@ -27,7 +27,7 @@ cp requirements.txt ${BUILD_DIR}/opt/${APP_NAME}/
 cp ${ICON_NAME} ${BUILD_DIR}/usr/share/pixmaps/
 
 echo "--- Criando arquivo de controle ---"
-# Adicionamos 'python3-venv' como uma dependência de sistema
+# Adicionei 'python3-venv' como uma dependência de sistema
 cat <<EOF > ${BUILD_DIR}/DEBIAN/control
 Package: ${APP_NAME}
 Version: ${VERSION}

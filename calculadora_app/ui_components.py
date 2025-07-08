@@ -1,5 +1,3 @@
-# Arquivo: ui_components.py
-
 def exibir_banner():
     """
     Exibe o banner ASCII de boas-vindas do programa.
